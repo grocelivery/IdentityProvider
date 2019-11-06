@@ -1,0 +1,32 @@
+version: "3"
+
+services:
+
+  webserver:
+    image: nginx:alpine
+    container_name: idp-webserver
+    working_dir: /application
+    volumes:
+      - .:/application
+      - ./.docker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - 8080:80
+    environment:
+      - SHELL=/bin/ash
+
+  php:
+    container_name: idp-php
+    build: .docker/php
+    volumes:
+      - .:/application
+
+  database:
+    container_name: idp-database
+    image: mysql:5.6
+    environment:
+      - MYSQL_RANDOM_ROOT_PASSWORD=true
+      - MYSQL_DATABASE=${DB_DATABASE}
+      - MYSQL_USER=${DB_USERNAME}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
+    ports:
+      - ${DB_PORT}:3306

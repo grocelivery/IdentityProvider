@@ -1,0 +1,16 @@
+imports:
+  - { resource: "./vendor/symplify/easy-coding-standard/config/set/php71.yaml" }
+  - { resource: "./vendor/symplify/easy-coding-standard/config/set/clean-code.yaml" }
+  - { resource: "./vendor/symplify/easy-coding-standard/config/set/psr12.yaml" }
+  - { resource: "./vendor/symplify/easy-coding-standard/config/set/psr2.yaml" }
+parameters:
+  line_ending: "\r\n"
+  exclude_files:
+    - "/storage/app/*"
+    - "/bootstrap/cache/*"
+  skip:
+    SlevomatCodingStandard\Sniffs\TypeHints\TypeHintDeclarationSniff.UselessDocComment: ~
+    SlevomatCodingStandard\Sniffs\TypeHints\TypeHintDeclarationSniff.UselessParameterAnnotation: ~
+    SlevomatCodingStandard\Sniffs\Variables\UnusedVariableSniff.UnusedVariable: ~
+    SlevomatCodingStandard\Sniffs\Exceptions\ReferenceThrowableOnlySniff.ReferencedGeneralException: ~
+    SlevomatCodingStandard\Sniffs\Classes\UnusedPrivateElementsSniff.WriteOnlyProperty: ~
