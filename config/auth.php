@@ -37,4 +37,9 @@ return [
         ],
     ],
     'password_timeout' => 10800,
+    'oauth' => [
+        'grant_type' => env('OAUTH_GRANT_TYPE', 'password'),
+        'client_id' => env('OAUTH_CLIENT_ID', 2),
+        'client_secret' => env('OAUTH_CLIENT_SECRET', ''),
+    ]
 ];

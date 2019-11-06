@@ -8,10 +8,20 @@ use Grocelivery\IdentityProvider\Http\Resources\UserResource;
 use Grocelivery\IdentityProvider\Interfaces\Http\Responses\ResponseInterface as Response;
 use Grocelivery\IdentityProvider\Services\Auth\RegisterService;
 
+/**
+ * Class RegisterController
+ * @package Grocelivery\IdentityProvider\Http\Controllers\Auth
+ */
 class RegisterController extends Controller
 {
+    /** @var RegisterService */
     protected $registerService;
 
+    /**
+     * RegisterController constructor.
+     * @param Response $response
+     * @param RegisterService $registerService
+     */
     public function __construct(Response $response, RegisterService $registerService)
     {
         parent::__construct($response);

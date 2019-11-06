@@ -18,9 +18,9 @@ class OAuthClient extends RestClient
     public function retrieveAccessToken(string $email, string $password): ResponseInterface
     {
         $this->setJson([
-            'grant_type' => 'password',
-            'client_id' => 2,
-            'client_secret' => '1wd73LcwvmEytv6yDToBfGXD290UylDEp0gYIg8s',
+            'grant_type' => config('auth.oauth.grant_type'),
+            'client_id' => config('auth.oauth.client_id'),
+            'client_secret' => config('auth.oauth.client_secret'),
             'username' => $email,
             'password' => $password
         ]);
