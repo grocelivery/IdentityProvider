@@ -7,9 +7,10 @@ Feature: User login and registration
 
   Scenario: As unregistered user, I want to register so I can login and retrieve access token
     When "POST" request is sent to "/api/register" route with body:
-      | key           | value            |
-      | user.email    | test@example.com |
-      | user.password | secret           |
+      | key                  | value            |
+      | email                | test@example.com |
+      | password             | secret           |
+      | passwordConfirmation | secret           |
     And response should exist
     And response should have "200" status
     And response should have "0" errors
@@ -26,9 +27,9 @@ Feature: User login and registration
   Scenario: As registered user, I want to login so I can retrieve access token
     Given user with "test@example.com" email and "secret" password is registered
     When "POST" request is sent to "/api/login" route with body:
-      | key           | value            |
-      | user.email    | test@example.com |
-      | user.password | secret           |
+      | key      | value            |
+      | email    | test@example.com |
+      | password | secret           |
     And response should exist
     And response should have "200" status
     And response should have "0" errors

@@ -23,16 +23,6 @@ class Kernel extends HttpKernel
 
     /** @var array */
     protected $middlewareGroups = [
-        'web' => [
-            \Grocelivery\IdentityProvider\Http\Middleware\EncryptCookies::class,
-            \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
-            \Illuminate\Session\Middleware\StartSession::class,
-            // \Illuminate\Session\Middleware\AuthenticateSession::class,
-            \Illuminate\View\Middleware\ShareErrorsFromSession::class,
-            \Grocelivery\IdentityProvider\Http\Middleware\VerifyCsrfToken::class,
-            \Illuminate\Routing\Middleware\SubstituteBindings::class,
-        ],
-
         'api' => [
             'throttle:60,1',
             'bindings',
@@ -41,7 +31,7 @@ class Kernel extends HttpKernel
 
     /** @var array */
     protected $routeMiddleware = [
-        'auth' => \Grocelivery\IdentityProvider\Http\Middleware\Authenticate::class,
+        'auth' => \Illuminate\Auth\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
@@ -55,9 +45,10 @@ class Kernel extends HttpKernel
 
     /** @var array */
     protected $middlewarePriority = [
+        \Illuminate\Auth\Middleware\Authorize::class,
         \Illuminate\Session\Middleware\StartSession::class,
         \Illuminate\View\Middleware\ShareErrorsFromSession::class,
-        \Grocelivery\IdentityProvider\Http\Middleware\Authenticate::class,
+        \Illuminate\Auth\Middleware\Authenticate::class,
         \Illuminate\Routing\Middleware\ThrottleRequests::class,
         \Illuminate\Session\Middleware\AuthenticateSession::class,
         \Illuminate\Routing\Middleware\SubstituteBindings::class,

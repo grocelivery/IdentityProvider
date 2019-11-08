@@ -2,7 +2,7 @@
 
 namespace Grocelivery\IdentityProvider\Services\Auth;
 
-use Grocelivery\IdentityProvider\Http\Clients\OAuthClient;
+use Grocelivery\IdentityProvider\Interfaces\Http\Clients\OAuthClientInterface;
 
 /**
  * Class LoginService
@@ -10,14 +10,14 @@ use Grocelivery\IdentityProvider\Http\Clients\OAuthClient;
  */
 class LoginService
 {
-    /** @var OAuthClient */
+    /** @var OAuthClientInterface */
     private $client;
 
     /**
      * LoginService constructor.
-     * @param OAuthClient $client
+     * @param OAuthClientInterface $client
      */
-    public function __construct(OAuthClient $client)
+    public function __construct(OAuthClientInterface $client)
     {
         $this->client = $client;
     }

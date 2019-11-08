@@ -19,12 +19,14 @@ services:
     build: .docker/php
     volumes:
       - .:/application
+    links:
+      - database
 
   database:
     container_name: idp-database
     image: mysql:5.6
     environment:
-      - MYSQL_RANDOM_ROOT_PASSWORD=true
+      - MYSQL_ROOT_PASSWORD=zsz1234
       - MYSQL_DATABASE=${DB_DATABASE}
       - MYSQL_USER=${DB_USERNAME}
       - MYSQL_PASSWORD=${DB_PASSWORD}

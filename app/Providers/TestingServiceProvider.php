@@ -4,18 +4,15 @@ declare(strict_types=1);
 
 namespace Grocelivery\IdentityProvider\Providers;
 
-use Grocelivery\IdentityProvider\Http\Clients\OAuthClient;
-use Grocelivery\IdentityProvider\Http\Responses\Response;
 use Grocelivery\IdentityProvider\Interfaces\Http\Clients\OAuthClientInterface;
-use Illuminate\Support\Facades\Schema;
-use Grocelivery\IdentityProvider\Interfaces\Http\Responses\ResponseInterface;
+use Grocelivery\IdentityProvider\Tests\Mocks\OAuthClient;
 use Illuminate\Support\ServiceProvider;
 
 /**
- * Class AppServiceProvider
+ * Class TestingServiceProvider
  * @package Grocelivery\IdentityProvider\Providers
  */
-class AppServiceProvider extends ServiceProvider
+class TestingServiceProvider extends ServiceProvider
 {
     /**
      * @return void
@@ -29,8 +26,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Schema::defaultStringLength(191);
-        $this->app->bind(ResponseInterface::class, Response::class);
         $this->app->bind(OAuthClientInterface::class, OAuthClient::class);
     }
 }

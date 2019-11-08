@@ -8,11 +8,13 @@ use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvid
 use Laravel\Passport\Passport;
 use Laravel\Passport\RouteRegistrar;
 
+/**
+ * Class AuthServiceProvider
+ * @package Grocelivery\IdentityProvider\Providers
+ */
 class AuthServiceProvider extends ServiceProvider
 {
     /**
-     * The policy mappings for the application.
-     *
      * @var array
      */
     protected $policies = [
@@ -20,8 +22,6 @@ class AuthServiceProvider extends ServiceProvider
     ];
 
     /**
-     * Register any authentication / authorization services.
-     *
      * @return void
      */
     public function boot(): void

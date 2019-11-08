@@ -13,6 +13,14 @@ use Illuminate\Contracts\Validation\Validator;
 class Request extends FormRequest
 {
     /**
+     * @return array
+     */
+    public function rules(): array
+    {
+        return [];
+    }
+
+    /**
      * @param Validator $validator
      */
     protected function failedValidation(Validator $validator)

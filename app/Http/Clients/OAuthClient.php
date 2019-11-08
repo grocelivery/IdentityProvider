@@ -2,13 +2,14 @@
 
 namespace Grocelivery\IdentityProvider\Http\Clients;
 
+use Grocelivery\IdentityProvider\Interfaces\Http\Clients\OAuthClientInterface;
 use Grocelivery\IdentityProvider\Interfaces\Http\Responses\ResponseInterface;
 
 /**
  * Class OAuthClient
  * @package Grocelivery\IdentityProvider\Http\Clients
  */
-class OAuthClient extends RestClient
+class OAuthClient extends RestClient implements OAuthClientInterface
 {
     /**
      * @param string $email
@@ -27,6 +28,7 @@ class OAuthClient extends RestClient
 
         /** @var ResponseInterface $response */
         $response = $this->post(config('app.url') . '/oauth/token');
+        
         return $response;
     }
 }

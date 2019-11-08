@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 return [
     'defaults' => [
-        'guard' => 'web',
+        'guard' => 'api',
         'passwords' => 'users',
     ],
     'guards' => [

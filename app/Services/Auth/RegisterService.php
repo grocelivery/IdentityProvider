@@ -13,6 +13,18 @@ use Illuminate\Support\Str;
  */
 class RegisterService
 {
+    /** @var AccountActivationService */
+    private $accountActivationService;
+
+    /**
+     * RegisterService constructor.
+     * @param AccountActivationService $accountActivationService
+     */
+    public function __construct(AccountActivationService $accountActivationService)
+    {
+        $this->accountActivationService = $accountActivationService;
+    }
+
     /**
      * @param string $email
      * @param $password
@@ -26,7 +38,7 @@ class RegisterService
         $user->generateNameFromEmail();
         $user->save();
 
-        $this->sendActivationMail($user);
+        $this->accountActivationService->sendActivationMail($user);
 
         return $user;
     }

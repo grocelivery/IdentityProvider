@@ -5,12 +5,14 @@ namespace Grocelivery\IdentityProvider\Tests\Traits;
 use Behat\Gherkin\Node\TableNode;
 use Exception;
 use Grocelivery\IdentityProvider\Http\Responses\Response;
+use Illuminate\Foundation\Application;
 use PHPUnit\Framework\Assert;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Trait SendsRequests
  * @package Grocelivery\IdentityProvider\Tests\Traits
+ * @property Application $app
  */
 trait SendsRequests
 {
@@ -31,7 +33,9 @@ trait SendsRequests
         $_SERVER['REQUEST_URI'] = $route;
 
         if (isset($body)) {
-            $_POST = $body->getTable();
+            foreach ($body as $field) {
+                $_POST[$field['key']] = $field['value'];
+            }
         }
 
         $request = Request::createFromGlobals();
@@ -64,7 +68,7 @@ trait SendsRequests
      */
     public function responseShouldHaveStatus(int $status): void
     {
-        Assert::assertEquals($this->response->getStatusCode(), $status);
+        Assert::assertEquals($status, $this->response->getStatusCode());
     }
 
     /**
@@ -73,7 +77,7 @@ trait SendsRequests
      */
     public function responseShouldHaveErrors(int $errors): void
     {
-        Assert::assertEquals($this->response->countErrors(), $errors);
+        Assert::assertEquals($errors, $this->response->countErrors());
     }
 
     /**

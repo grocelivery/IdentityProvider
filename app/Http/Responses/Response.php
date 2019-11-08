@@ -23,14 +23,23 @@ class Response extends JsonResponse implements ResponseInterface
      * @param null $data
      * @param int $status
      * @param array $headers
-     * @return Response|JsonResponse
+     * @return ResponseInterface
      */
-    public static function fromJsonString($data = null, $status = 200, $headers = [])
+    public static function fromJsonString($data = null, $status = 200, $headers = []): ResponseInterface
     {
         $data = json_decode($data, true);
         $response = new Response($data, $status, $headers);
         $response->setBody($data);
         return $response;
+    }
+
+    /**
+     * @param array $data
+     * @return ResponseInterface
+     */
+    public static function fromArray(array $data): ResponseInterface
+    {
+        return static::fromJsonString(json_encode($data));
     }
 
     /**

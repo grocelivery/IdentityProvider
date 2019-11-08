@@ -2,8 +2,8 @@
 
 namespace Grocelivery\IdentityProvider\Tests\Traits;
 
-use Behat\Behat\Tester\Exception\PendingException;
 use Grocelivery\IdentityProvider\Models\User;
+use Grocelivery\IdentityProvider\Services\Auth\RegisterService;
 
 /**
  * Trait AuthenticatesUsers
@@ -21,8 +21,8 @@ trait AuthenticatesUsers
      */
     public function userWithAndPasswordIsRegistered(string $email, string $password)
     {
-        $authService = new AuthService();
-        $authService->register($email, $password);
+        $authService = new RegisterService();
+        $authService->registerUser($email, $password);
     }
 
     /**
