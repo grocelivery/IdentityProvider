@@ -4,6 +4,7 @@ namespace Grocelivery\IdentityProvider\Tests\Traits;
 
 use Grocelivery\IdentityProvider\Models\User;
 use Grocelivery\IdentityProvider\Services\Auth\RegisterService;
+use Illuminate\Contracts\Container\BindingResolutionException;
 
 /**
  * Trait AuthenticatesUsers
@@ -18,11 +19,12 @@ trait AuthenticatesUsers
      * @Given user with :email email and :password password is registered
      * @param string $email
      * @param string $password
+     * @throws BindingResolutionException
      */
     public function userWithAndPasswordIsRegistered(string $email, string $password)
     {
-        $authService = new RegisterService();
-        $authService->registerUser($email, $password);
+        $registerService = app()->make(RegisterService::class);
+        $registerService->registerUser($email, $password);
     }
 
     /**
@@ -32,7 +34,7 @@ trait AuthenticatesUsers
      */
     public function userHasActivationToken(string $email, string $activationToken)
     {
-        $user = User::query()->firstOrFail(['email' => $email]);
+        $user = User::query()->where('email', $email)->firstOrFail();
 
         $activationToken = new ActivationToken();
         $activationToken->user_id = $user->id;

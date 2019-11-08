@@ -6,6 +6,7 @@ namespace Grocelivery\IdentityProvider\Models;
 
 use Carbon\Carbon;
 use Grocelivery\IdentityProvider\Models\Traits\UsesUuid;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
@@ -39,8 +40,19 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     *
+     */
     public function generateNameFromEmail(): void
     {
         $this->name = head(explode("@", $this->email));
+    }
+
+    /**
+     * @return HasOne
+     */
+    public function activationToken(): HasOne
+    {
+        return $this->hasOne(ActivationToken::class);
     }
 }

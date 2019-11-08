@@ -13,6 +13,8 @@ services:
       - 8080:80
     environment:
       - SHELL=/bin/ash
+    depends_on:
+      - php
 
   php:
     container_name: idp-php
