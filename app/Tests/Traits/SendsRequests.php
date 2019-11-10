@@ -99,6 +99,6 @@ trait SendsRequests
      */
     public function bearerTokenHeaderIsSetTo(string $token): void
     {
-        $_SERVER['HTTP_AUTHORIZATION'] = $token;
+        $_SERVER['HTTP_AUTHORIZATION'] = "Bearer $token";
     }
 }
