@@ -2,6 +2,6 @@ default:
   suites:
     info:
       paths:
-        - "features"
+        - features
       contexts:
         - Grocelivery\IdentityProvider\Tests\Contexts\FeatureContext

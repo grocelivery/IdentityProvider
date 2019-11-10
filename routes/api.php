@@ -12,4 +12,7 @@ Route::post('/verify/{token}', 'Auth\VerificationController@verify');
 
 Route::group(['middleware' => 'auth:api'], function (): void {
     Route::get('/me', 'UserController@getAuthenticatedUser');
+    Route::post('/token/validate', 'Auth\AccessTokenController@validate');
+    Route::post('/token/revoke', 'Auth\AccessTokenController@revokeCurrent');
+    Route::post('/token/revoke/all', 'Auth\AccessTokenController@revokeAll');
 });

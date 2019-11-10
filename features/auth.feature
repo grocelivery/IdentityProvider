@@ -10,7 +10,7 @@ Feature: User login, verification and registration
             | key      | value            |
             | email    | test@example.com |
             | password | secret           |
-        And response should exist
+        Then response should exist
         And response should have "200" status
         And response should have "0" errors
         And response should contain:
@@ -31,7 +31,7 @@ Feature: User login, verification and registration
             | key      | value            |
             | email    | test@example.com |
             | password | secret           |
-        And response should exist
+        Then response should exist
         And response should have "200" status
         And response should have "0" errors
         And response should contain:
@@ -44,7 +44,7 @@ Feature: User login, verification and registration
         Given user with "test@example.com" email and "secret" password is registered
         And "testActivationToken" verification token exists for "test@example.com" email
         When "POST" request is sent to "/api/verify/testActivationToken" route
-        And response should exist
+        Then response should exist
         And response should have "200" status
         And response should have "0" errors
         And response should contain:
@@ -59,7 +59,7 @@ Feature: User login, verification and registration
             | key      | value            |
             | email    | test@example.com |
             | password | secret           |
-        And response should exist
+        Then response should exist
         And response should have "403" status
         And response should have "1" errors
         And response should contain:
@@ -74,7 +74,7 @@ Feature: User login, verification and registration
             | key      | value                        |
             | email    | non-existing-one@example.com |
             | password | secret                       |
-        And response should exist
+        Then response should exist
         And response should have "400" status
         And response should have "1" errors
         And response should contain:
@@ -90,7 +90,7 @@ Feature: User login, verification and registration
             | key      | value            |
             | email    | test@example.com |
             | password | secret           |
-        And response should exist
+        Then response should exist
         And response should have "400" status
         And response should have "1" errors
         And response should contain:
@@ -102,7 +102,7 @@ Feature: User login, verification and registration
 
     Scenario: As literally anybody, I could try to verify by using not existing token so I should receive not found error
         When "POST" request is sent to "/api/verify/non-existing-token" route
-        And response should exist
+        Then response should exist
         And response should have "404" status
         And response should have "1" errors
         And response should contain:

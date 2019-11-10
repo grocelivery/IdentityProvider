@@ -42,7 +42,7 @@ class LoginController extends Controller
         $email = $request->input('email');
         $password = $request->input('password');
 
-        $response = $this->oAuthProxy->token($email, $password);
+        $response = $this->oAuthProxy->getTokenFromCredentials($email, $password);
 
         if (!User::findByEmail($email)->hasVerifiedEmail()) {
             throw new EmailNotVerifiedException();

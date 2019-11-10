@@ -7,7 +7,7 @@ Feature: Basic application behaviour
 
   Scenario: As IDP API consumer, I want to retrieve basic app information to see if IDP API is working properly
     When "GET" request is sent to "/api/status" route
-    And response should exist
+    Then response should exist
     And response should have "200" status
     And response should have "0" errors
     And response should contain:

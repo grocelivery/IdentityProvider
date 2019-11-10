@@ -92,4 +92,13 @@ trait SendsRequests
             Assert::assertContains($error['message'], $this->response->getErrors());
         }
     }
+
+    /**
+     * @Given bearer token header is set to :token
+     * @param $token
+     */
+    public function bearerTokenHeaderIsSetTo(string $token): void
+    {
+        $_SERVER['HTTP_AUTHORIZATION'] = $token;
+    }
 }

@@ -35,7 +35,7 @@ class OAuthProxy
      * @return ResponseInterface
      * @throws Exception
      */
-    public function token(string $email, string $password): ResponseInterface
+    public function getTokenFromCredentials(string $email, string $password): ResponseInterface
     {
         $parameters = [
             'grant_type' => config('auth.oauth.grant_type'),
