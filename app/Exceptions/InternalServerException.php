@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Grocelivery\IdentityProvider\Exceptions;
 
-use Grocelivery\IdentityProvider\Interfaces\Exceptions\ResponseExceptionInterface;
 use Exception;
+use Grocelivery\IdentityProvider\Interfaces\Exceptions\ResponseExceptionInterface;
 use Illuminate\Http\Response;
 
 /**

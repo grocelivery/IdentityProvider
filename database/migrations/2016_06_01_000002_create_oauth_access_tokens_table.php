@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -11,9 +13,9 @@ class CreateOauthAccessTokensTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('oauth_access_tokens', function (Blueprint $table) {
+        Schema::create('oauth_access_tokens', function (Blueprint $table): void {
             $table->string('id', 100)->primary();
             $table->uuid('user_id')->index()->nullable();
             $table->unsignedInteger('client_id');
@@ -30,7 +32,7 @@ class CreateOauthAccessTokensTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('oauth_access_tokens');
     }

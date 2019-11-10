@@ -108,6 +108,32 @@ class Response extends JsonResponse implements ResponseInterface
     }
 
     /**
+     * @param string $message
+     * @return ResponseInterface
+     */
+    public function setMessage(string $message): ResponseInterface
+    {
+        $this->body['message'] = $message;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMessage(): string
+    {
+        return $this->body['message'];
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasMessage(): bool
+    {
+        return !empty($this->body['message']);
+    }
+
+    /**
      * @param array $errors
      * @return ResponseInterface
      */
@@ -169,6 +195,9 @@ class Response extends JsonResponse implements ResponseInterface
         return parent::send();
     }
 
+    /**
+     *
+     */
     protected function prepareData(): void
     {
         $this->data = json_encode($this->all(), $this->encodingOptions);

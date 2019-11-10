@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Grocelivery\IdentityProvider\Http\Resources;
 
 use Illuminate\Contracts\Support\Arrayable;
@@ -31,8 +33,8 @@ abstract class Resource
         $data = [];
 
         if ($this->resource instanceof Collection) {
-            foreach($this->resource as $resource) {
-                $this->resource= $resource;
+            foreach ($this->resource as $resource) {
+                $this->resource = $resource;
                 $data[] = $this->toArray();
             }
         } else {

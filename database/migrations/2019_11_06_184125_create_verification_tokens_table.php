@@ -1,19 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateActivationTokensTable extends Migration
+class CreateVerificationTokensTable extends Migration
 {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('activation_tokens', function (Blueprint $table) {
+        Schema::create('verification_tokens', function (Blueprint $table): void {
             $table->bigIncrements('id');
             $table->string('user_id');
             $table->string('token', 32);
@@ -31,7 +33,7 @@ class CreateActivationTokensTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('activation_tokens');
     }

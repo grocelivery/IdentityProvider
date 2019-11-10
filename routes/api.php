@@ -8,6 +8,8 @@ Route::get('/status', 'StatusController@getStatus');
 
 Route::post('/register', 'Auth\RegisterController@register');
 Route::post('/login', 'Auth\LoginController@login');
-Route::post('/activate/{token}', 'Auth\AccountActivationController@activate');
+Route::post('/verify/{token}', 'Auth\VerificationController@verify');
 
-Route::get('/me', 'UserController@getAuthenticatedUser')->middleware('auth:api');
+Route::group(['middleware' => 'auth:api'], function (): void {
+    Route::get('/me', 'UserController@getAuthenticatedUser');
+});

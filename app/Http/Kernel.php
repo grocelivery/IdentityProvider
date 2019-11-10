@@ -27,6 +27,10 @@ class Kernel extends HttpKernel
             'throttle:60,1',
             'bindings',
         ],
+        'auth:api' => [
+            'auth',
+            'verified',
+        ],
     ];
 
     /** @var array */
@@ -36,11 +40,10 @@ class Kernel extends HttpKernel
         'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
-        'guest' => \Grocelivery\IdentityProvider\Http\Middleware\RedirectIfAuthenticated::class,
         'password.confirm' => \Illuminate\Auth\Middleware\RequirePassword::class,
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-        'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'verified' => \Grocelivery\IdentityProvider\Http\Middleware\EnsureEmailIsVerified::class,
     ];
 
     /** @var array */

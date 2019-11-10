@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Grocelivery\IdentityProvider\Http\Requests;
 
 use Grocelivery\IdentityProvider\Exceptions\BadRequestException;
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Foundation\Http\FormRequest;
 
 /**
  * Class Request
@@ -23,7 +25,7 @@ class Request extends FormRequest
     /**
      * @param Validator $validator
      */
-    protected function failedValidation(Validator $validator)
+    protected function failedValidation(Validator $validator): void
     {
         $messages = $validator->getMessageBag()->all();
         throw (new BadRequestException())->setErrors($messages);

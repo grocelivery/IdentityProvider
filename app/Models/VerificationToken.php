@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Grocelivery\IdentityProvider\Models;
 
 use Carbon\Carbon;
@@ -7,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
- * Class ActivationToken
+ * Class VerificationToken
  * @package Grocelivery\IdentityProvider\Models
  * @property string $id
  * @property string $user_id
@@ -16,7 +18,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property Carbon $created_at
  * @property Carbon $updated_at
  */
-class ActivationToken extends Model
+class VerificationToken extends Model
 {
     /** @var int */
     public const LENGTH = 32;

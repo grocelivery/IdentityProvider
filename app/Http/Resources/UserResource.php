@@ -1,11 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Grocelivery\IdentityProvider\Http\Resources;
 
 use Grocelivery\IdentityProvider\Models\User;
 
+/**
+ * Class UserResource
+ * @package Grocelivery\IdentityProvider\Http\Resources
+ */
 class UserResource extends Resource
 {
+    /**
+     * @return array
+     */
     public function toArray(): array
     {
         /** @var User $user */
@@ -15,7 +24,7 @@ class UserResource extends Resource
             'id' => $user->id,
             'name' => $user->name,
             'email' => $user->email,
-            'active' => $user->hasVerifiedEmail(),
+            'verified' => $user->hasVerifiedEmail(),
             'createdAt' => $user->created_at->toDateTimeString(),
         ];
     }

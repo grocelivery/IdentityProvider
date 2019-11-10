@@ -57,6 +57,22 @@ interface ResponseInterface
     public function addError(string $error): ResponseInterface;
 
     /**
+     * @param string $message
+     * @return ResponseInterface
+     */
+    public function setMessage(string $message): ResponseInterface;
+
+    /**
+     * @return string
+     */
+    public function getMessage(): string;
+
+    /**
+     * @return bool
+     */
+    public function hasMessage(): bool;
+
+    /**
      * @param string $value
      * @return mixed
      */

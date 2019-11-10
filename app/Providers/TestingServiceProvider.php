@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Grocelivery\IdentityProvider\Providers;
 
-use Grocelivery\IdentityProvider\Interfaces\Http\Clients\OAuthClientInterface;
-use Grocelivery\IdentityProvider\Tests\Mocks\OAuthClient;
 use Illuminate\Support\ServiceProvider;
 
 /**
@@ -26,6 +24,5 @@ class TestingServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $this->app->bind(OAuthClientInterface::class, OAuthClient::class);
     }
 }

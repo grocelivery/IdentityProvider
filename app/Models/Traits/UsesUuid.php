@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Grocelivery\IdentityProvider\Models\Traits;
 
-use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 /**
  * Trait UsesUuid

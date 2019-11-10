@@ -1,13 +1,16 @@
 <?php
 
+declare(strict_types=1);
 
 namespace Grocelivery\IdentityProvider\Http\Controllers\Auth;
 
-
+use Exception;
+use Grocelivery\IdentityProvider\Exceptions\EmailNotVerifiedException;
 use Grocelivery\IdentityProvider\Http\Controllers\Controller;
 use Grocelivery\IdentityProvider\Http\Requests\LoginUser;
 use Grocelivery\IdentityProvider\Interfaces\Http\Responses\ResponseInterface as Response;
-use Grocelivery\IdentityProvider\Services\Auth\LoginService;
+use Grocelivery\IdentityProvider\Models\User;
+use Grocelivery\IdentityProvider\Services\Auth\OAuthProxy;
 
 /**
  * Class LoginController
@@ -15,26 +18,36 @@ use Grocelivery\IdentityProvider\Services\Auth\LoginService;
  */
 class LoginController extends Controller
 {
-    /** @var LoginService */
-    protected $loginService;
+    /** @var OAuthProxy */
+    protected $oAuthProxy;
 
-    public function __construct(Response $response, LoginService $loginService)
+    /**
+     * LoginController constructor.
+     * @param Response $response
+     * @param OAuthProxy $oAuthProxy
+     */
+    public function __construct(Response $response, OAuthProxy $oAuthProxy)
     {
         parent::__construct($response);
-        $this->loginService = $loginService;
+        $this->oAuthProxy = $oAuthProxy;
     }
 
     /**
      * @param LoginUser $request
      * @return Response
+     * @throws Exception
      */
     public function login(LoginUser $request): Response
     {
-        $email = $request->get('email');
-        $password = $request->get('password');
+        $email = $request->input('email');
+        $password = $request->input('password');
 
-        $accessToken = $this->loginService->loginUser($email, $password);
+        $response = $this->oAuthProxy->token($email, $password);
 
-        return $this->response->add('accessToken', $accessToken);
+        if (!User::findByEmail($email)->hasVerifiedEmail()) {
+            throw new EmailNotVerifiedException();
+        }
+
+        return $this->response->add('accessToken', $response->get('access_token'));
     }
 }

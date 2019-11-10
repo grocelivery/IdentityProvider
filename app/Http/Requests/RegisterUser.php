@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Grocelivery\IdentityProvider\Http\Requests;
 
 /**
@@ -16,7 +18,6 @@ class RegisterUser extends Request
         return [
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6',
-            'passwordConfirmation' => 'required|same:password',
         ];
     }
 }

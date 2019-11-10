@@ -7,13 +7,13 @@ namespace Grocelivery\IdentityProvider\Exceptions;
 use Illuminate\Http\Response;
 
 /**
- * Class BadRequestException
+ * Class EmailNotVerifiedException
  * @package Grocelivery\IdentityProvider\Exceptions
  */
-class BadRequestException extends InternalServerException
+class EmailNotVerifiedException extends InternalServerException
 {
     /** @var string */
-    protected $message = "Bad request.";
+    protected $message = "Email address is not verified.";
     /** @var int */
-    protected $code = Response::HTTP_BAD_REQUEST;
+    protected $code = Response::HTTP_FORBIDDEN;
 }

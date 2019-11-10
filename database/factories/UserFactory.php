@@ -1,10 +1,12 @@
 <?php
 
-use Grocelivery\IdentityProvider\Models\User;
+declare(strict_types=1);
+
 use Faker\Generator as Faker;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Hash;
+use Grocelivery\IdentityProvider\Models\User;
 use Illuminate\Database\Eloquent\Factory;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 /** @var Factory $factory */
 $factory->define(User::class, function (Faker $faker) {

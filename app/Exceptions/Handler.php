@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace Grocelivery\IdentityProvider\Exceptions;
 
+use Exception;
 use Grocelivery\IdentityProvider\Http\Responses\Response;
 use Grocelivery\IdentityProvider\Interfaces\Http\Responses\ResponseInterface;
-use Exception;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Contracts\Container\Container;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response as HttpResponse;
@@ -68,9 +70,19 @@ class Handler extends ExceptionHandler
             $errors[] = 'Route not found.';
         }
 
+        if ($exception instanceof  ModelNotFoundException) {
+            $status = HttpResponse::HTTP_NOT_FOUND;
+            $errors[] = 'Not found.';
+        }
+
         if ($exception instanceof MethodNotAllowedHttpException) {
             $status = HttpResponse::HTTP_METHOD_NOT_ALLOWED;
             $errors[] = 'Method not allowed.';
+        }
+
+        if ($exception instanceof AuthenticationException) {
+            $status = HttpResponse::HTTP_UNAUTHORIZED;
+            $errors[] = 'Unauthenticated.';
         }
 
         if ($exception instanceof InternalServerException) {

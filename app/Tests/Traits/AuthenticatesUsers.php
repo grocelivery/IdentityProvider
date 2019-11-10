@@ -1,10 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Grocelivery\IdentityProvider\Tests\Traits;
 
 use Grocelivery\IdentityProvider\Models\User;
-use Grocelivery\IdentityProvider\Services\Auth\RegisterService;
+use Grocelivery\IdentityProvider\Models\VerificationToken;
+use Grocelivery\IdentityProvider\Services\Auth\UserRegistrar;
 use Illuminate\Contracts\Container\BindingResolutionException;
+use Laravel\Passport\Passport;
 
 /**
  * Trait AuthenticatesUsers
@@ -21,24 +25,42 @@ trait AuthenticatesUsers
      * @param string $password
      * @throws BindingResolutionException
      */
-    public function userWithAndPasswordIsRegistered(string $email, string $password)
+    public function userWithAndPasswordIsRegistered(string $email, string $password): void
     {
-        $registerService = app()->make(RegisterService::class);
-        $registerService->registerUser($email, $password);
+        $userRegistrar = app()->make(UserRegistrar::class);
+        $userRegistrar->register($email, $password);
     }
 
     /**
-     * @Given user :email has activation token :activationToken
+     * @Given :token verification token exists for :email email
+     * @param string $token
      * @param string $email
-     * @param string $activationToken
      */
-    public function userHasActivationToken(string $email, string $activationToken)
+    public function userHasActivationToken(string $token, string $email): void
     {
-        $user = User::query()->where('email', $email)->firstOrFail();
+        $user = User::findByEmail($email);
 
-        $activationToken = new ActivationToken();
+        $activationToken = new VerificationToken();
         $activationToken->user_id = $user->id;
-        $activationToken->token = $activationToken;
+        $activationToken->token = $token;
         $activationToken->save();
+    }
+
+    /**
+     * @Given :email email is verified
+     * @param string $email
+     */
+    public function emailIsVerified(string $email): void
+    {
+        User::findByEmail($email)->markEmailAsVerified();
+    }
+
+    /**
+     * @Given user with :email email is authenticated
+     * @param $email
+     */
+    public function userWithEmailIsAuthenticated(string $email): void
+    {
+        Passport::actingAs(User::findByEmail($email));
     }
 }
