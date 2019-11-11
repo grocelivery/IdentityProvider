@@ -4,12 +4,13 @@ Feature: Validating and revoking access tokens
 
     Background: Application is initialized
         Given initialized application
-        Given user with "test@example.com" email and "secret" password is registered
+        And user with "test@example.com" email and "secret" password is registered
         And "test@example.com" email is verified
 
     Scenario: As IDP API consumer, I want to validate identity of the user with correct access token provided
         Given user with "test@example.com" email is authenticated
-        When "POST" request is sent to "/api/token/validate" route
+        And "POST" request to "/api/token/validate" route
+        When request is sent
         Then response should exist
         And response should have "200" status
         And response should have "0" errors
@@ -20,7 +21,8 @@ Feature: Validating and revoking access tokens
             | errors       |
 
     Scenario: As IDP API consumer, I could try to validate identity of the user with no access token provided so I should receive Unauthenticated error then
-        When "POST" request is sent to "/api/token/validate" route
+        Given "POST" request to "/api/token/validate" route
+        When request is sent
         Then response should exist
         And response should have "401" status
         And response should have "1" errors
@@ -32,8 +34,8 @@ Feature: Validating and revoking access tokens
             | Unauthenticated. |
 
     Scenario: As IDP API consumer, I could try to validate identity of the user with wrong access token provided so I should receive Unauthenticated error then
-        Given bearer token header is set to "wr0n6-aCce5S-t0ken"
-        When "POST" request is sent to "/api/token/validate" route
+        Given "POST" request to "/api/token/validate" route
+        When request is sent
         Then response should exist
         And response should have "401" status
         And response should have "1" errors
@@ -46,7 +48,8 @@ Feature: Validating and revoking access tokens
 
     Scenario: As IDP API consumer, I want to revoke current access token so nobody could use it anymore
         Given user with "test@example.com" email is authenticated
-        When "POST" request is sent to "/api/token/revoke" route
+        And "POST" request to "/api/token/revoke" route
+        When request is sent
         Then response should exist
         And response should have "200" status
         And response should have "0" errors
@@ -57,7 +60,8 @@ Feature: Validating and revoking access tokens
             | errors       |
 
     Scenario: As IDP API consumer, I could try to revoke single invalid, not existing or already invalidated token so I should receive Unauthenticated error then
-        When "POST" request is sent to "/api/token/revoke" route
+        Given "POST" request to "/api/token/revoke" route
+        When request is sent
         Then response should exist
         And response should have "401" status
         And response should have "1" errors
@@ -70,7 +74,8 @@ Feature: Validating and revoking access tokens
 
     Scenario: As IDP API consumer, I want to revoke all access tokens of authenticated user so nobody could use these tokens anymore
         Given user with "test@example.com" email is authenticated
-        When "POST" request is sent to "/api/token/revoke/all" route
+        And "POST" request to "/api/token/revoke/all" route
+        When request is sent
         Then response should exist
         And response should have "200" status
         And response should have "0" errors
@@ -81,8 +86,9 @@ Feature: Validating and revoking access tokens
             | errors       |
 
     Scenario: As IDP API consumer, I want to revoke all access tokens of unauthenticated user so I should receive Unauthenticated error then
-        Given bearer token header is set to "wr0n6-aCce5S-t0ken"
-        When "POST" request is sent to "/api/token/revoke/all" route
+        Given "POST" request to "/api/token/revoke/all" route
+        And bearer token header is set to "wr0n6-aCce5S-t0ken"
+        When request is sent
         Then response should exist
         And response should have "401" status
         And response should have "1" errors

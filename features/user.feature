@@ -9,7 +9,8 @@ Feature: Retrieving user accounts information
 
     Scenario: As logged in user, I want to retrieve my account information
         Given user with "test@example.com" email is authenticated
-        When "GET" request is sent to "/api/me" route with body:
+        And "GET" request to "/api/me" route
+        When request is sent
         Then response should exist
         And response should have "200" status
         And response should have "0" errors
@@ -25,7 +26,8 @@ Feature: Retrieving user accounts information
             | errors              |
 
     Scenario: As unauthenticated user, I can try to retrieve my account information so I should receive unauthenticated error
-        When "GET" request is sent to "/api/me" route with body:
+        Given "GET" request to "/api/me" route
+        When request is sent
         Then response should exist
         And response should have "401" status
         And response should have "1" errors
@@ -38,8 +40,9 @@ Feature: Retrieving user accounts information
 
     Scenario: As unverified user, I can try to retrieve my account information so I should receive unverified error
         Given user with "not-verified-one@example.com" email and "secret" password is registered
-        Given user with "not-verified-one@example.com" email is authenticated
-        When "GET" request is sent to "/api/me" route with body:
+        And user with "not-verified-one@example.com" email is authenticated
+        And "GET" request to "/api/me" route
+        When request is sent
         Then response should exist
         And response should have "403" status
         And response should have "1" errors

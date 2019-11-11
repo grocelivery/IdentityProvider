@@ -29,6 +29,7 @@ trait InitializesApplication
     {
         $this->app = require __DIR__ . '/../../../bootstrap/app.php';
         $this->app->loadEnvironmentFrom('.env.testing');
+
         (new LoadEnvironmentVariables())->bootstrap($this->app);
         (new LoadConfiguration())->bootstrap($this->app);
 

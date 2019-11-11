@@ -6,10 +6,12 @@ Feature: User login, verification and registration
         Given initialized application
 
     Scenario: As unregistered user, I want to register so I can login and retrieve access token
-        When "POST" request is sent to "/api/register" route with body:
+        Given "POST" request to "/api/register" route
+        And request body is:
             | key      | value            |
             | email    | test@example.com |
             | password | secret           |
+        When request is sent
         Then response should exist
         And response should have "200" status
         And response should have "0" errors
@@ -27,10 +29,12 @@ Feature: User login, verification and registration
     Scenario: As registered user, I want to login so I can retrieve access token
         Given user with "test@example.com" email and "secret" password is registered
         And "test@example.com" email is verified
-        When "POST" request is sent to "/api/login" route with body:
+        And "POST" request to "/api/login" route
+        And request body is:
             | key      | value            |
             | email    | test@example.com |
             | password | secret           |
+        When request is sent
         Then response should exist
         And response should have "200" status
         And response should have "0" errors
@@ -43,7 +47,8 @@ Feature: User login, verification and registration
     Scenario: As registered user, I want to activate my account to be able to login
         Given user with "test@example.com" email and "secret" password is registered
         And "testActivationToken" verification token exists for "test@example.com" email
-        When "POST" request is sent to "/api/verify/testActivationToken" route
+        And "POST" request to "/api/verify/testActivationToken" route
+        When request is sent
         Then response should exist
         And response should have "200" status
         And response should have "0" errors
@@ -55,10 +60,12 @@ Feature: User login, verification and registration
 
     Scenario: As registered but not verified user, I can try to login so I should receive verification error
         Given user with "test@example.com" email and "secret" password is registered
-        When "POST" request is sent to "/api/login" route with body:
+        And "POST" request to "/api/login" route
+        And request body is:
             | key      | value            |
             | email    | test@example.com |
             | password | secret           |
+        When request is sent
         Then response should exist
         And response should have "403" status
         And response should have "1" errors
@@ -70,10 +77,12 @@ Feature: User login, verification and registration
             | Email address is not verified. |
 
     Scenario: As unregistered user, I can try to login so I should receive error of invalid credentials
-        When "POST" request is sent to "/api/login" route with body:
+        Given "POST" request to "/api/login" route
+        And request body is:
             | key      | value                        |
             | email    | non-existing-one@example.com |
             | password | secret                       |
+        When request is sent
         Then response should exist
         And response should have "400" status
         And response should have "1" errors
@@ -86,10 +95,12 @@ Feature: User login, verification and registration
 
     Scenario: As registered user, I can try to register again so I should receive user already existing error
         Given user with "test@example.com" email and "secret" password is registered
-        When "POST" request is sent to "/api/register" route with body:
+        And "POST" request to "/api/register" route
+        And request body is:
             | key      | value            |
             | email    | test@example.com |
             | password | secret           |
+        When request is sent
         Then response should exist
         And response should have "400" status
         And response should have "1" errors
@@ -101,7 +112,8 @@ Feature: User login, verification and registration
             | The email has already been taken. |
 
     Scenario: As literally anybody, I could try to verify by using not existing token so I should receive not found error
-        When "POST" request is sent to "/api/verify/non-existing-token" route
+        Given "POST" request to "/api/verify/non-existing-token" route
+        When request is sent
         Then response should exist
         And response should have "404" status
         And response should have "1" errors
