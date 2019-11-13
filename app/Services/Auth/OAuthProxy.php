@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Grocelivery\IdentityProvider\Services\Auth;
 
 use Exception;
+use Grocelivery\CommonUtils\Http\JsonResponse;
+use Grocelivery\CommonUtils\Interfaces\JsonResponseInterface;
 use Grocelivery\IdentityProvider\Exceptions\InvalidLoginCredentials;
-use Grocelivery\IdentityProvider\Http\Responses\Response;
-use Grocelivery\IdentityProvider\Interfaces\Http\Responses\ResponseInterface;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
 
@@ -32,10 +32,10 @@ class OAuthProxy
     /**
      * @param string $email
      * @param string $password
-     * @return ResponseInterface
+     * @return JsonResponseInterface
      * @throws Exception
      */
-    public function getTokenFromCredentials(string $email, string $password): ResponseInterface
+    public function getTokenFromCredentials(string $email, string $password): JsonResponseInterface
     {
         $parameters = [
             'grant_type' => config('auth.oauth.grant_type'),
@@ -53,6 +53,6 @@ class OAuthProxy
             throw new InvalidLoginCredentials();
         }
 
-        return Response::fromJsonString($response->getContent());
+        return JsonResponse::fromJsonString($response->getContent());
     }
 }

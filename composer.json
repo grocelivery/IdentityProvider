@@ -1,61 +1,70 @@
 {
-    "name": "Grocelivery Identity Provider app",
-    "type": "project",
-    "description": "The Laravel Framework.",
-    "keywords": [
-        "framework",
-        "laravel"
-    ],
-    "license": "MIT",
-    "require": {
-        "php": "^7.3",
-        "ext-json": "*",
-        "fideloper/proxy": "^4.0",
-        "laravel/framework": "^6.2",
-        "laravel/passport": "^8.0"
-    },
-    "require-dev": {
-        "behat/behat": "^3.5",
-        "facade/ignition": "^1.4",
-        "fzaninotto/faker": "^1.4",
-        "laravel/tinker": "^1.0",
-        "mockery/mockery": "^1.0",
-        "nunomaduro/collision": "^3.0",
-        "phpro/grumphp": "^0.16.2",
-        "phpunit/phpunit": "^8.0",
-        "symplify/easy-coding-standard": "^6.1"
-    },
-    "config": {
-        "optimize-autoloader": true,
-        "preferred-install": "dist",
-        "sort-packages": true
-    },
-    "extra": {
-        "laravel": {
-            "dont-discover": []
-        }
-    },
-    "autoload": {
-        "psr-4": {
-            "Grocelivery\\IdentityProvider\\": "app/"
-        },
-        "classmap": [
-            "database/seeds",
-            "database/factories"
-        ]
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true,
-    "scripts": {
-        "post-autoload-dump": [
-            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover --ansi"
-        ],
-        "post-root-package-install": [
-            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
-        ],
-        "post-create-project-cmd": [
-            "@php artisan key:generate --ansi"
-        ]
+  "name": "grocelivery/identity-provider",
+  "type": "project",
+  "description": "Grocelivery Identity Provider",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Mateusz Lencki",
+      "email": "mateusz.lencki@gmail.com"
     }
+  ],
+  "repositories": [
+    {
+      "type": "git",
+      "url": "https://github.com/grocelivery/common-utils.git"
+    }
+  ],
+  "require": {
+    "php": "^7.3",
+    "ext-json": "*",
+    "fideloper/proxy": "^4.0",
+    "laravel/framework": "^6.2",
+    "laravel/passport": "^8.0",
+    "grocelivery/common-utils": "dev-master"
+  },
+  "require-dev": {
+    "behat/behat": "^3.5",
+    "facade/ignition": "^1.4",
+    "fzaninotto/faker": "^1.4",
+    "laravel/tinker": "^1.0",
+    "mockery/mockery": "^1.0",
+    "nunomaduro/collision": "^3.0",
+    "phpro/grumphp": "^0.16.2",
+    "phpunit/phpunit": "^8.0",
+    "symplify/easy-coding-standard": "^6.1"
+  },
+  "config": {
+    "optimize-autoloader": true,
+    "preferred-install": "dist",
+    "sort-packages": true
+  },
+  "extra": {
+    "laravel": {
+      "dont-discover": []
+    }
+  },
+  "autoload": {
+    "psr-4": {
+      "Grocelivery\\IdentityProvider\\": "app/"
+    },
+    "classmap": [
+      "database/seeds",
+      "database/factories"
+    ]
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "scripts": {
+    "post-autoload-dump": [
+      "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+      "@php artisan package:discover --ansi"
+    ],
+    "post-root-package-install": [
+      "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+    ],
+    "post-create-project-cmd": [
+      "@php artisan key:generate --ansi"
+    ]
+  }
 }

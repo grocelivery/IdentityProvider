@@ -6,7 +6,7 @@ namespace Grocelivery\IdentityProvider\Tests\Traits;
 
 use Behat\Gherkin\Node\TableNode;
 use Exception;
-use Grocelivery\IdentityProvider\Http\Responses\Response;
+use Grocelivery\CommonUtils\Http\JsonResponse;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
 use PHPUnit\Framework\Assert;
@@ -20,7 +20,7 @@ trait SendsRequests
 {
     /** @var Request */
     protected $request;
-    /** @var Response */
+    /** @var JsonResponse */
     protected $response;
 
     /**

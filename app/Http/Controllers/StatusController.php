@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Grocelivery\IdentityProvider\Http\Controllers;
 
-use Grocelivery\IdentityProvider\Interfaces\Http\Responses\ResponseInterface as Response;
+use Grocelivery\CommonUtils\Interfaces\JsonResponseInterface as JsonResponse;
 use Illuminate\Foundation\Application;
 
 /**
@@ -18,19 +18,19 @@ class StatusController extends Controller
 
     /**
      * StatusController constructor.
-     * @param Response $response
+     * @param JsonResponse $response
      * @param Application $application
      */
-    public function __construct(Response $response, Application $application)
+    public function __construct(JsonResponse $response, Application $application)
     {
         parent::__construct($response);
         $this->application = $application;
     }
 
     /**
-     * @return Response
+     * @return JsonResponse
      */
-    public function getStatus(): Response
+    public function getStatus(): JsonResponse
     {
         return $this->response
             ->add('app', config('app.name'))

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Grocelivery\IdentityProvider\Providers;
 
-use Grocelivery\IdentityProvider\Http\Responses\Response;
-use Grocelivery\IdentityProvider\Interfaces\Http\Responses\ResponseInterface;
+use Grocelivery\CommonUtils\Http\JsonResponse;
+use Grocelivery\CommonUtils\Interfaces\JsonResponseInterface;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
@@ -28,6 +28,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Schema::defaultStringLength(191);
-        $this->app->bind(ResponseInterface::class, Response::class);
+        $this->app->bind(JsonResponseInterface::class, JsonResponse::class);
     }
 }

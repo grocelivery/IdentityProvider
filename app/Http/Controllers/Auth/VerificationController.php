@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Grocelivery\IdentityProvider\Http\Controllers\Auth;
 
 use Exception;
+use Grocelivery\CommonUtils\Interfaces\JsonResponseInterface as JsonResponse;
 use Grocelivery\IdentityProvider\Http\Controllers\Controller;
-use Grocelivery\IdentityProvider\Interfaces\Http\Responses\ResponseInterface as Response;
 use Grocelivery\IdentityProvider\Models\VerificationToken;
 use Grocelivery\IdentityProvider\Services\Auth\EmailVerifier;
 
@@ -21,10 +21,10 @@ class VerificationController extends Controller
 
     /**
      * VerificationController constructor.
-     * @param Response $response
+     * @param JsonResponse $response
      * @param EmailVerifier $emailVerifier
      */
-    public function __construct(Response $response, EmailVerifier $emailVerifier)
+    public function __construct(JsonResponse $response, EmailVerifier $emailVerifier)
     {
         parent::__construct($response);
         $this->emailVerifier = $emailVerifier;
@@ -32,10 +32,10 @@ class VerificationController extends Controller
 
     /**
      * @param VerificationToken $token
-     * @return Response
+     * @return JsonResponse
      * @throws Exception
      */
-    public function verify(VerificationToken $token): Response
+    public function verify(VerificationToken $token): JsonResponse
     {
         $this->emailVerifier->verify($token);
 

@@ -5,8 +5,9 @@ declare(strict_types=1);
 namespace Grocelivery\IdentityProvider\Exceptions;
 
 use Exception;
-use Grocelivery\IdentityProvider\Http\Responses\Response;
-use Grocelivery\IdentityProvider\Interfaces\Http\Responses\ResponseInterface;
+use Grocelivery\CommonUtils\Exceptions\InternalServerException;
+use Grocelivery\CommonUtils\Http\JsonResponse;
+use Grocelivery\CommonUtils\Interfaces\JsonResponseInterface;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Contracts\Container\Container;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -22,7 +23,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  */
 class Handler extends ExceptionHandler
 {
-    /** @var Response */
+    /** @var JsonResponse */
     protected $response;
     /** @var array */
     protected $dontReport = [];
@@ -36,9 +37,9 @@ class Handler extends ExceptionHandler
     /**
      * Handler constructor.
      * @param Container $container
-     * @param Response $response
+     * @param JsonResponse $response
      */
-    public function __construct(Container $container, Response $response)
+    public function __construct(Container $container, JsonResponse $response)
     {
         parent::__construct($container);
         $this->response = $response;
@@ -58,7 +59,7 @@ class Handler extends ExceptionHandler
      *
      * @param Request $request
      * @param Exception $exception
-     * @return ResponseInterface
+     * @return JsonResponseInterface
      */
     public function render($request, Exception $exception)
     {

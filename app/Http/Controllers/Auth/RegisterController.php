@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Grocelivery\IdentityProvider\Http\Controllers\Auth;
 
+use Grocelivery\CommonUtils\Interfaces\JsonResponseInterface as JsonResponse;
 use Grocelivery\IdentityProvider\Http\Controllers\Controller;
 use Grocelivery\IdentityProvider\Http\Requests\RegisterUser;
 use Grocelivery\IdentityProvider\Http\Resources\UserResource;
-use Grocelivery\IdentityProvider\Interfaces\Http\Responses\ResponseInterface as Response;
 use Grocelivery\IdentityProvider\Services\Auth\UserRegistrar;
 
 /**
@@ -21,10 +21,10 @@ class RegisterController extends Controller
 
     /**
      * RegisterController constructor.
-     * @param Response $response
+     * @param JsonResponse $response
      * @param UserRegistrar $userRegistrar
      */
-    public function __construct(Response $response, UserRegistrar $userRegistrar)
+    public function __construct(JsonResponse $response, UserRegistrar $userRegistrar)
     {
         parent::__construct($response);
         $this->userRegistrar = $userRegistrar;
@@ -32,9 +32,9 @@ class RegisterController extends Controller
 
     /**
      * @param RegisterUser $request
-     * @return Response
+     * @return JsonResponse
      */
-    public function register(RegisterUser $request): Response
+    public function register(RegisterUser $request): JsonResponse
     {
         $email = $request->input('email');
         $password = $request->input('password');
