@@ -9,22 +9,17 @@
       "email": "mateusz.lencki@gmail.com"
     }
   ],
-  "repositories": [
-    {
-      "type": "git",
-      "url": "https://github.com/grocelivery/common-utils.git"
-    }
-  ],
   "require": {
     "php": "^7.3",
     "ext-json": "*",
     "fideloper/proxy": "^4.0",
     "laravel/framework": "^6.2",
     "laravel/passport": "^8.0",
-    "grocelivery/common-utils": "dev-master"
+    "grocelivery/http-utils": "^1.0"
   },
   "require-dev": {
     "behat/behat": "^3.5",
+    "grocelivery/laravel-testing": "^1.0",
     "facade/ignition": "^1.4",
     "fzaninotto/faker": "^1.4",
     "laravel/tinker": "^1.0",
@@ -46,7 +41,8 @@
   },
   "autoload": {
     "psr-4": {
-      "Grocelivery\\IdentityProvider\\": "app/"
+      "Grocelivery\\IdentityProvider\\": "app/",
+      "Grocelivery\\Testing\\Behat\\": "packages/grocelivery/behat-utils/src"
     },
     "classmap": [
       "database/seeds",

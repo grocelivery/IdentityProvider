@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Grocelivery\IdentityProvider\Exceptions;
 
 use Exception;
-use Grocelivery\CommonUtils\Exceptions\InternalServerException;
-use Grocelivery\CommonUtils\Http\JsonResponse;
-use Grocelivery\CommonUtils\Interfaces\JsonResponseInterface;
+use Grocelivery\HttpUtils\Exceptions\InternalServerException;
+use Grocelivery\HttpUtils\Interfaces\JsonResponseInterface;
+use Grocelivery\HttpUtils\Responses\JsonResponse;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Contracts\Container\Container;
 use Illuminate\Database\Eloquent\ModelNotFoundException;

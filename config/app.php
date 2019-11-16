@@ -46,7 +46,6 @@ return [
         Grocelivery\IdentityProvider\Providers\AppServiceProvider::class,
         Grocelivery\IdentityProvider\Providers\AuthServiceProvider::class,
         Grocelivery\IdentityProvider\Providers\RouteServiceProvider::class,
-
     ],
     'aliases' => [
         'App' => Illuminate\Support\Facades\App::class,

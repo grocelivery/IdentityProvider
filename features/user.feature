@@ -4,7 +4,7 @@ Feature: Retrieving user accounts information
 
     Background: Application is initialized
         Given initialized application
-        And user with "test@example.com" email and "secret" password is registered
+        And user with "test@example.com" email and "secret" password exists
         And "test@example.com" email is verified
 
     Scenario: As logged in user, I want to retrieve my account information
@@ -39,7 +39,7 @@ Feature: Retrieving user accounts information
             | Unauthenticated. |
 
     Scenario: As unverified user, I can try to retrieve my account information so I should receive unverified error
-        Given user with "not-verified-one@example.com" email and "secret" password is registered
+        Given user with "not-verified-one@example.com" email and "secret" password exists
         And user with "not-verified-one@example.com" email is authenticated
         And "GET" request to "/api/me" route
         When request is sent

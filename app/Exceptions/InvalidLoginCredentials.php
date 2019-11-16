@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Grocelivery\IdentityProvider\Exceptions;
 
-use Grocelivery\CommonUtils\Exceptions\BadRequestException;
+use Grocelivery\HttpUtils\Exceptions\BadRequestException;
 
 /**
  * Class InvalidLoginCredentials

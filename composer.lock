@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9df0e131ee117bbdc967271b1ef12b5f",
+    "content-hash": "b4be26ae3678b87b5627605f2ae1034d",
     "packages": [
         {
             "name": "defuse/php-encryption",
@@ -457,12 +457,18 @@
             "time": "2017-06-27T22:17:23+00:00"
         },
         {
-            "name": "grocelivery/common-utils",
-            "version": "dev-master",
+            "name": "grocelivery/http-utils",
+            "version": "v1.0.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/grocelivery/common-utils.git",
-                "reference": "d730c609bb68fe798a2c64f86825ed968aab09f5"
+                "url": "https://github.com/grocelivery/http-utils.git",
+                "reference": "d436e8b1cbfd37058340f39bb234ae26be78e069"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/grocelivery/http-utils/zipball/d436e8b1cbfd37058340f39bb234ae26be78e069",
+                "reference": "d436e8b1cbfd37058340f39bb234ae26be78e069",
+                "shasum": ""
             },
             "require": {
                 "ext-json": "*",
@@ -473,9 +479,10 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Grocelivery\\CommonUtils\\": "src/"
+                    "Grocelivery\\HttpUtils\\": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -485,8 +492,8 @@
                     "email": "mateusz.lencki@gmail.com"
                 }
             ],
-            "description": "Set of common utility classes for grocelivery apps",
-            "time": "2019-11-12T22:00:32+00:00"
+            "description": "Set of http utility classes",
+            "time": "2019-11-16T16:36:09+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -3468,16 +3475,16 @@
         },
         {
             "name": "zendframework/zend-diactoros",
-            "version": "2.2.0",
+            "version": "2.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-diactoros.git",
-                "reference": "66eded992a75bfe75a829005a2884aae5ca86daa"
+                "reference": "de5847b068362a88684a55b0dbb40d85986cfa52"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zend-diactoros/zipball/66eded992a75bfe75a829005a2884aae5ca86daa",
-                "reference": "66eded992a75bfe75a829005a2884aae5ca86daa",
+                "url": "https://api.github.com/repos/zendframework/zend-diactoros/zipball/de5847b068362a88684a55b0dbb40d85986cfa52",
+                "reference": "de5847b068362a88684a55b0dbb40d85986cfa52",
                 "shasum": ""
             },
             "require": {
@@ -3531,7 +3538,7 @@
                 "psr",
                 "psr-7"
             ],
-            "time": "2019-11-12T17:26:16+00:00"
+            "time": "2019-11-13T19:16:13+00:00"
         }
     ],
     "packages-dev": [
@@ -4136,16 +4143,16 @@
         },
         {
             "name": "facade/ignition",
-            "version": "1.11.2",
+            "version": "1.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/facade/ignition.git",
-                "reference": "862cbc2dfffa1fa28b47822a116e5b2e03b421db"
+                "reference": "67736a01597b9e08f00a1fc8966b92b918dba5ea"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/facade/ignition/zipball/862cbc2dfffa1fa28b47822a116e5b2e03b421db",
-                "reference": "862cbc2dfffa1fa28b47822a116e5b2e03b421db",
+                "url": "https://api.github.com/repos/facade/ignition/zipball/67736a01597b9e08f00a1fc8966b92b918dba5ea",
+                "reference": "67736a01597b9e08f00a1fc8966b92b918dba5ea",
                 "shasum": ""
             },
             "require": {
@@ -4203,7 +4210,7 @@
                 "laravel",
                 "page"
             ],
-            "time": "2019-10-13T10:42:06+00:00"
+            "time": "2019-11-14T10:51:35+00:00"
         },
         {
             "name": "facade/ignition-contracts",
@@ -4401,16 +4408,16 @@
         },
         {
             "name": "fzaninotto/faker",
-            "version": "v1.8.0",
+            "version": "v1.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fzaninotto/Faker.git",
-                "reference": "f72816b43e74063c8b10357394b6bba8cb1c10de"
+                "reference": "27a216cbe72327b2d6369fab721a5843be71e57d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/f72816b43e74063c8b10357394b6bba8cb1c10de",
-                "reference": "f72816b43e74063c8b10357394b6bba8cb1c10de",
+                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/27a216cbe72327b2d6369fab721a5843be71e57d",
+                "reference": "27a216cbe72327b2d6369fab721a5843be71e57d",
                 "shasum": ""
             },
             "require": {
@@ -4419,13 +4426,11 @@
             "require-dev": {
                 "ext-intl": "*",
                 "phpunit/phpunit": "^4.8.35 || ^5.7",
-                "squizlabs/php_codesniffer": "^1.5"
+                "squizlabs/php_codesniffer": "^2.9.2"
             },
             "type": "library",
             "extra": {
-                "branch-alias": {
-                    "dev-master": "1.8-dev"
-                }
+                "branch-alias": []
             },
             "autoload": {
                 "psr-4": {
@@ -4447,7 +4452,7 @@
                 "faker",
                 "fixtures"
             ],
-            "time": "2018-07-12T10:23:15+00:00"
+            "time": "2019-11-14T13:13:06+00:00"
         },
         {
             "name": "gitonomy/gitlib",
@@ -4504,6 +4509,55 @@
             "description": "Library for accessing git",
             "homepage": "http://gitonomy.com",
             "time": "2019-06-23T09:49:01+00:00"
+        },
+        {
+            "name": "grocelivery/laravel-testing",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/grocelivery/laravel-testing.git",
+                "reference": "9a31ff87fb19af7002d98632ff9228e8b20e1123"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/grocelivery/laravel-testing/zipball/9a31ff87fb19af7002d98632ff9228e8b20e1123",
+                "reference": "9a31ff87fb19af7002d98632ff9228e8b20e1123",
+                "shasum": ""
+            },
+            "require": {
+                "behat/behat": "^3.5",
+                "ext-json": "*",
+                "grocelivery/http-utils": "^1.0",
+                "illuminate/support": "^6.5",
+                "laravel/passport": "^8.0",
+                "php": "^7.3",
+                "phpunit/phpunit": "^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Grocelivery\\Testing\\Laravel\\Providers\\TestingServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Grocelivery\\Testing\\Laravel\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mateusz Lencki",
+                    "email": "mateusz.lencki@gmail.com"
+                }
+            ],
+            "description": "Behat scenarios steps definitions for grocelivery apps made in laravel",
+            "time": "2019-11-16T18:01:08+00:00"
         },
         {
             "name": "hamcrest/hamcrest-php",
@@ -7944,9 +7998,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "grocelivery/common-utils": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
