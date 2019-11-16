@@ -4,13 +4,14 @@ declare(strict_types=1);
 
 namespace Grocelivery\IdentityProvider\Http\Resources;
 
+use Grocelivery\HttpUtils\Resources\JsonResource;
 use Grocelivery\IdentityProvider\Models\User;
 
 /**
  * Class UserResource
  * @package Grocelivery\IdentityProvider\Http\Resources
  */
-class UserResource extends Resource
+class UserResource extends JsonResource
 {
     /**
      * @return array

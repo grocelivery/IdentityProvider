@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Grocelivery\IdentityProvider\Http\Requests;
 
-use Grocelivery\IdentityProvider\Exceptions\BadRequestException;
+use Grocelivery\HttpUtils\Exceptions\BadRequestException;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 

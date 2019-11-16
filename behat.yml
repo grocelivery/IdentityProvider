@@ -4,4 +4,4 @@ default:
       paths:
         - features
       contexts:
-        - Grocelivery\IdentityProvider\Tests\Contexts\FeatureContext
+        - Grocelivery\IdentityProvider\Testing\FeatureContext

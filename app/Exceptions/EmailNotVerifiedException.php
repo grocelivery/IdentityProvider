@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Grocelivery\IdentityProvider\Exceptions;
 
+use Grocelivery\HttpUtils\Exceptions\InternalServerException;
 use Illuminate\Http\Response;
 
 /**

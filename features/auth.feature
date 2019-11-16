@@ -27,7 +27,7 @@ Feature: User login, verification and registration
             | errors              |
 
     Scenario: As registered user, I want to login so I can retrieve access token
-        Given user with "test@example.com" email and "secret" password is registered
+        Given user with "test@example.com" email and "secret" password exists
         And "test@example.com" email is verified
         And "POST" request to "/api/login" route
         And request body is:
@@ -45,7 +45,7 @@ Feature: User login, verification and registration
             | errors           |
 
     Scenario: As registered user, I want to activate my account to be able to login
-        Given user with "test@example.com" email and "secret" password is registered
+        Given user with "test@example.com" email and "secret" password exists
         And "testActivationToken" verification token exists for "test@example.com" email
         And "POST" request to "/api/verify/testActivationToken" route
         When request is sent
@@ -59,7 +59,7 @@ Feature: User login, verification and registration
             | errors       |
 
     Scenario: As registered but not verified user, I can try to login so I should receive verification error
-        Given user with "test@example.com" email and "secret" password is registered
+        Given user with "test@example.com" email and "secret" password exists
         And "POST" request to "/api/login" route
         And request body is:
             | key      | value            |
@@ -94,7 +94,7 @@ Feature: User login, verification and registration
             | Invalid login credentials. |
 
     Scenario: As registered user, I can try to register again so I should receive user already existing error
-        Given user with "test@example.com" email and "secret" password is registered
+        Given user with "test@example.com" email and "secret" password exists
         And "POST" request to "/api/register" route
         And request body is:
             | key      | value            |

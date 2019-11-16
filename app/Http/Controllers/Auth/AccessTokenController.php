@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Grocelivery\IdentityProvider\Http\Controllers\Auth;
 
+use Grocelivery\HttpUtils\Interfaces\JsonResponseInterface as JsonResponse;
 use Grocelivery\IdentityProvider\Http\Controllers\Controller;
 use Grocelivery\IdentityProvider\Http\Requests\Request;
-use Grocelivery\IdentityProvider\Interfaces\Http\Responses\ResponseInterface as Response;
 use Grocelivery\IdentityProvider\Services\Auth\AccessTokenManager;
 
 /**
@@ -20,28 +20,28 @@ class AccessTokenController extends Controller
 
     /**
      * AccessTokenController constructor.
-     * @param Response $response
+     * @param JsonResponse $response
      * @param AccessTokenManager $accessTokenManager
      */
-    public function __construct(Response $response, AccessTokenManager $accessTokenManager)
+    public function __construct(JsonResponse $response, AccessTokenManager $accessTokenManager)
     {
         parent::__construct($response);
         $this->accessTokenManager = $accessTokenManager;
     }
 
     /**
-     * @return Response
+     * @return JsonResponse
      */
-    public function validate(): Response
+    public function validate(): JsonResponse
     {
         return $this->response->setMessage('Access token validated.');
     }
 
     /**
      * @param Request $request
-     * @return Response
+     * @return JsonResponse
      */
-    public function revokeCurrent(Request $request): Response
+    public function revokeCurrent(Request $request): JsonResponse
     {
         $this->accessTokenManager->revokeCurrent($request->user());
 
@@ -50,9 +50,9 @@ class AccessTokenController extends Controller
 
     /**
      * @param Request $request
-     * @return Response
+     * @return JsonResponse
      */
-    public function revokeAll(Request $request): Response
+    public function revokeAll(Request $request): JsonResponse
     {
         $this->accessTokenManager->revokeAll($request->user());
 

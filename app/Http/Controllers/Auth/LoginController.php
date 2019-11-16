@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Grocelivery\IdentityProvider\Http\Controllers\Auth;
 
 use Exception;
+use Grocelivery\HttpUtils\Interfaces\JsonResponseInterface as JsonResponse;
 use Grocelivery\IdentityProvider\Exceptions\EmailNotVerifiedException;
 use Grocelivery\IdentityProvider\Http\Controllers\Controller;
 use Grocelivery\IdentityProvider\Http\Requests\LoginUser;
-use Grocelivery\IdentityProvider\Interfaces\Http\Responses\ResponseInterface as Response;
 use Grocelivery\IdentityProvider\Models\User;
 use Grocelivery\IdentityProvider\Services\Auth\OAuthProxy;
 
@@ -23,10 +23,10 @@ class LoginController extends Controller
 
     /**
      * LoginController constructor.
-     * @param Response $response
+     * @param JsonResponse $response
      * @param OAuthProxy $oAuthProxy
      */
-    public function __construct(Response $response, OAuthProxy $oAuthProxy)
+    public function __construct(JsonResponse $response, OAuthProxy $oAuthProxy)
     {
         parent::__construct($response);
         $this->oAuthProxy = $oAuthProxy;
@@ -34,10 +34,10 @@ class LoginController extends Controller
 
     /**
      * @param LoginUser $request
-     * @return Response
+     * @return JsonResponse
      * @throws Exception
      */
-    public function login(LoginUser $request): Response
+    public function login(LoginUser $request): JsonResponse
     {
         $email = $request->input('email');
         $password = $request->input('password');

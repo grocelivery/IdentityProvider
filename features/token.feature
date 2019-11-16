@@ -4,7 +4,7 @@ Feature: Validating and revoking access tokens
 
     Background: Application is initialized
         Given initialized application
-        And user with "test@example.com" email and "secret" password is registered
+        And user with "test@example.com" email and "secret" password exists
         And "test@example.com" email is verified
 
     Scenario: As IDP API consumer, I want to validate identity of the user with correct access token provided
