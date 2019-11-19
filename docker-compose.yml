@@ -12,7 +12,7 @@ services:
     expose:
       - 8081
     environment:
-      - VIRTUAL_HOST=identity-provider.grocelivery.eu
+      - VIRTUAL_HOST=idp.grocelivery.eu
       - SHELL=/bin/ash
     depends_on:
       - php
