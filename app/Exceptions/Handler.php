@@ -5,26 +5,24 @@ declare(strict_types=1);
 namespace Grocelivery\IdentityProvider\Exceptions;
 
 use Exception;
-use Grocelivery\HttpUtils\Exceptions\InternalServerException;
-use Grocelivery\HttpUtils\Interfaces\JsonResponseInterface;
-use Grocelivery\HttpUtils\Responses\JsonResponse;
+use Grocelivery\Utils\Exceptions\ErrorRenderer;
+use Grocelivery\Utils\Interfaces\JsonResponseInterface as JsonResponse;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Contracts\Container\Container;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response as HttpResponse;
-use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-/**
+/**ó
  * Class Handler
  * @package Grocelivery\IdentityProvider\Exceptions
  */
 class Handler extends ExceptionHandler
 {
-    /** @var JsonResponse */
-    protected $response;
+    /** @var ErrorRenderer */
+    protected $errorRenderer;
+
     /** @var array */
     protected $dontReport = [];
 
@@ -37,12 +35,12 @@ class Handler extends ExceptionHandler
     /**
      * Handler constructor.
      * @param Container $container
-     * @param JsonResponse $response
+     * @param ErrorRenderer $errorRenderer
      */
-    public function __construct(Container $container, JsonResponse $response)
+    public function __construct(Container $container, ErrorRenderer $errorRenderer)
     {
         parent::__construct($container);
-        $this->response = $response;
+        $this->errorRenderer = $errorRenderer;
     }
 
     /**
@@ -59,44 +57,21 @@ class Handler extends ExceptionHandler
      *
      * @param Request $request
      * @param Exception $exception
-     * @return JsonResponseInterface
+     * @return JsonResponse
      */
-    public function render($request, Exception $exception)
+    public function render($request, Exception $exception): JsonResponse
     {
-        $status = HttpResponse::HTTP_INTERNAL_SERVER_ERROR;
-        $errors = [];
+        $this->errorRenderer->additionallyHandle(
+            ModelNotFoundException::class,
+            HttpResponse::HTTP_NOT_FOUND,
+            'Not found.'
+        );
 
-        if ($exception instanceof NotFoundHttpException) {
-            $status = HttpResponse::HTTP_NOT_FOUND;
-            $errors[] = 'Route not found.';
-        }
+        $this->errorRenderer->additionallyHandle(
+            AuthenticationException::class,
+            HttpResponse::HTTP_UNAUTHORIZED
+        );
 
-        if ($exception instanceof  ModelNotFoundException) {
-            $status = HttpResponse::HTTP_NOT_FOUND;
-            $errors[] = 'Not found.';
-        }
-
-        if ($exception instanceof MethodNotAllowedHttpException) {
-            $status = HttpResponse::HTTP_METHOD_NOT_ALLOWED;
-            $errors[] = 'Method not allowed.';
-        }
-
-        if ($exception instanceof AuthenticationException) {
-            $status = HttpResponse::HTTP_UNAUTHORIZED;
-            $errors[] = 'Unauthenticated.';
-        }
-
-        if ($exception instanceof InternalServerException) {
-            $status = $exception->getCode();
-            $errors = $exception->getErrors();
-        }
-
-        if (empty($errors)) {
-            $errors[] = !empty($exception->getMessage()) ? $exception->getMessage() : 'Internal server error.';
-        }
-
-        return $this->response
-            ->setStatusCode($status)
-            ->setErrors($errors);
+        return $this->errorRenderer->render($request, $exception);
     }
 }

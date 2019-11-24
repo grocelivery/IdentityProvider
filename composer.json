@@ -15,11 +15,11 @@
     "fideloper/proxy": "^4.0",
     "laravel/framework": "^6.2",
     "laravel/passport": "^8.0",
-    "grocelivery/http-utils": "^1.0"
+    "grocelivery/utils": "~1.1.0"
   },
   "require-dev": {
     "behat/behat": "^3.5",
-    "grocelivery/laravel-testing": "^1.0",
+    "grocelivery/laravel-testing": "~1.1.0",
     "facade/ignition": "^1.4",
     "fzaninotto/faker": "^1.4",
     "laravel/tinker": "^1.0",
@@ -41,8 +41,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Grocelivery\\IdentityProvider\\": "app/",
-      "Grocelivery\\Testing\\Behat\\": "packages/grocelivery/behat-utils/src"
+      "Grocelivery\\IdentityProvider\\": "app/"
     },
     "classmap": [
       "database/seeds",

@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Grocelivery\IdentityProvider\Http\Controllers\Auth;
 
-use Grocelivery\HttpUtils\Interfaces\JsonResponseInterface as JsonResponse;
 use Grocelivery\IdentityProvider\Http\Controllers\Controller;
 use Grocelivery\IdentityProvider\Http\Requests\RegisterUser;
 use Grocelivery\IdentityProvider\Http\Resources\UserResource;
 use Grocelivery\IdentityProvider\Services\Auth\UserRegistrar;
+use Grocelivery\Utils\Interfaces\JsonResponseInterface as JsonResponse;
 
 /**
  * Class RegisterController

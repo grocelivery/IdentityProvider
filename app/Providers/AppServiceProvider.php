@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Grocelivery\IdentityProvider\Providers;
 
-use Grocelivery\HttpUtils\Interfaces\JsonResponseInterface;
-use Grocelivery\HttpUtils\Responses\JsonResponse;
+use Grocelivery\Utils\Interfaces\JsonResponseInterface;
+use Grocelivery\Utils\Responses\JsonResponse;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 

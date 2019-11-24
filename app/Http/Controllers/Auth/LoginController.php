@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace Grocelivery\IdentityProvider\Http\Controllers\Auth;
 
 use Exception;
-use Grocelivery\HttpUtils\Interfaces\JsonResponseInterface as JsonResponse;
 use Grocelivery\IdentityProvider\Exceptions\EmailNotVerifiedException;
 use Grocelivery\IdentityProvider\Http\Controllers\Controller;
 use Grocelivery\IdentityProvider\Http\Requests\LoginUser;
 use Grocelivery\IdentityProvider\Models\User;
 use Grocelivery\IdentityProvider\Services\Auth\OAuthProxy;
+use Grocelivery\Utils\Interfaces\JsonResponseInterface as JsonResponse;
 
 /**
  * Class LoginController

@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace Grocelivery\IdentityProvider\Http\Requests;
 
+use Grocelivery\Utils\Requests\FormRequest;
+
 /**
  * Class RegisterUser
  * @package Grocelivery\IdentityProvider\Http\Requests
  */
-class RegisterUser extends Request
+class RegisterUser extends FormRequest
 {
     /**
      * @return array

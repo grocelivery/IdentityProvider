@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Grocelivery\IdentityProvider\Services\Auth;
 
 use Exception;
-use Grocelivery\HttpUtils\Interfaces\JsonResponseInterface;
-use Grocelivery\HttpUtils\Responses\JsonResponse;
 use Grocelivery\IdentityProvider\Exceptions\InvalidLoginCredentials;
+use Grocelivery\Utils\Interfaces\JsonResponseInterface;
+use Grocelivery\Utils\Responses\JsonResponse;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
 

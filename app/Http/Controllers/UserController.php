@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Grocelivery\IdentityProvider\Http\Controllers;
 
-use Grocelivery\HttpUtils\Interfaces\JsonResponseInterface as JsonResponse;
-use Grocelivery\IdentityProvider\Http\Requests\Request;
 use Grocelivery\IdentityProvider\Http\Resources\UserResource;
+use Grocelivery\Utils\Interfaces\JsonResponseInterface as JsonResponse;
+use Illuminate\Http\Request;
 
 /**
  * Class UserController

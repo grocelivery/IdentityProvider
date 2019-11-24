@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Grocelivery\IdentityProvider\Http\Controllers;
 
-use Grocelivery\HttpUtils\Interfaces\JsonResponseInterface as JsonResponse;
+use Grocelivery\Utils\Interfaces\JsonResponseInterface as JsonResponse;
 use Illuminate\Foundation\Application;
 
 /**

@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Grocelivery\IdentityProvider\Http\Controllers\Auth;
 
 use Exception;
-use Grocelivery\HttpUtils\Interfaces\JsonResponseInterface as JsonResponse;
 use Grocelivery\IdentityProvider\Http\Controllers\Controller;
 use Grocelivery\IdentityProvider\Models\VerificationToken;
 use Grocelivery\IdentityProvider\Services\Auth\EmailVerifier;
+use Grocelivery\Utils\Interfaces\JsonResponseInterface as JsonResponse;
 
 /**
  * Class VerificationController

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Grocelivery\IdentityProvider\Http\Resources;
 
-use Grocelivery\HttpUtils\Resources\JsonResource;
 use Grocelivery\IdentityProvider\Models\User;
+use Grocelivery\Utils\Resources\JsonResource;
 
 /**
  * Class UserResource
