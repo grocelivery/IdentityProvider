@@ -15,10 +15,10 @@ services:
       - VIRTUAL_HOST=idp.grocelivery.eu
       - SHELL=/bin/ash
     depends_on:
-      - php
+      - php-fpm
 
-  php:
-    container_name: idp-php
+  php-fpm:
+    container_name: idp-php-fpm
     build: .docker/php
     volumes:
       - .:/application
