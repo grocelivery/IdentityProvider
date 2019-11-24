@@ -14,7 +14,7 @@ use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response as HttpResponse;
 
-/**ó
+/**
  * Class Handler
  * @package Grocelivery\IdentityProvider\Exceptions
  */
