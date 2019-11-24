@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Grocelivery\IdentityProvider\Providers;
 
+use Grocelivery\IdentityProvider\Interfaces\Services\EmailVerifierInterface;
+use Grocelivery\IdentityProvider\Testing\Mocks\EmailVerifierMock;
 use Illuminate\Support\ServiceProvider;
 
 /**
@@ -24,5 +26,6 @@ class TestingServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        $this->app->bind(EmailVerifierInterface::class, EmailVerifierMock::class);
     }
 }

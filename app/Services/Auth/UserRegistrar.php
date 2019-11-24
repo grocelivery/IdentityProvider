@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace Grocelivery\IdentityProvider\Services\Auth;
 
+use Exception;
+use Grocelivery\IdentityProvider\Interfaces\Services\EmailVerifierInterface as EmailVerifier;
 use Grocelivery\IdentityProvider\Models\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 /**
@@ -29,9 +32,12 @@ class UserRegistrar
      * @param string $email
      * @param string $password
      * @return User
+     * @throws Exception
      */
     public function register(string $email, string $password): User
     {
+        DB::beginTransaction();
+
         $user = new User();
         $user->email = $email;
         $user->password = Hash::make($password);
@@ -39,6 +45,8 @@ class UserRegistrar
         $user->save();
 
         $this->emailVerifier->sendVerificationMail($user);
+
+        DB::commit();
 
         return $user;
     }

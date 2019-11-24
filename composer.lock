@@ -458,16 +458,16 @@
         },
         {
             "name": "grocelivery/utils",
-            "version": "v1.1.0",
+            "version": "v1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/grocelivery/utils.git",
-                "reference": "a4783d3f8cda661df40bce47c0db99b04b75023c"
+                "reference": "32686e858c73415efe5cbca7a0ce977244137882"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/grocelivery/utils/zipball/a4783d3f8cda661df40bce47c0db99b04b75023c",
-                "reference": "a4783d3f8cda661df40bce47c0db99b04b75023c",
+                "url": "https://api.github.com/repos/grocelivery/utils/zipball/32686e858c73415efe5cbca7a0ce977244137882",
+                "reference": "32686e858c73415efe5cbca7a0ce977244137882",
                 "shasum": ""
             },
             "require": {
@@ -503,7 +503,7 @@
                 }
             ],
             "description": "Set of http utility classes",
-            "time": "2019-11-24T13:42:16+00:00"
+            "time": "2019-11-24T17:08:41+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
