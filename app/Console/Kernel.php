@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Grocelivery\IdentityProvider\Console;
 
+use Grocelivery\IdentityProvider\Console\Commands\VerifyEmail;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -18,7 +19,9 @@ class Kernel extends ConsoleKernel
      *
      * @var array
      */
-    protected $commands = [];
+    protected $commands = [
+        VerifyEmail::class,
+    ];
 
     /**
      * @param  Schedule  $schedule
