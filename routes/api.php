@@ -9,11 +9,9 @@ Route::get('/keys/public', 'Auth\KeyController@getPublicKey');
 
 Route::post('/register', 'Auth\RegisterController@register');
 Route::post('/login', 'Auth\LoginController@login');
-Route::post('/verify/{token}', 'Auth\VerificationController@verify');
+Route::post('/refresh', 'Auth\RefreshTokenController@refresh');
 
 Route::group(['middleware' => 'auth:api'], function (): void {
     Route::get('/me', 'UserController@getAuthenticatedUser');
-    Route::post('/token/validate', 'Auth\AccessTokenController@validate');
-    Route::post('/token/revoke', 'Auth\AccessTokenController@revokeCurrent');
-    Route::post('/token/revoke/all', 'Auth\AccessTokenController@revokeAll');
+    Route::post('/logout', 'Auth\LogoutController@logout');
 });

@@ -38,11 +38,31 @@ class OAuthProxy
     public function getTokenFromCredentials(string $email, string $password): JsonResponseInterface
     {
         $parameters = [
-            'grant_type' => config('auth.oauth.grant_type'),
+            'grant_type' => 'password',
             'client_id' => config('auth.oauth.client_id'),
             'client_secret' => config('auth.oauth.client_secret'),
             'username' => $email,
             'password' => $password
+        ];
+
+        $request = Request::create('/oauth/token', Request::METHOD_POST, $parameters);
+
+        $response = $this->app->handle($request);
+
+        if (!$response->isOk()) {
+            throw new InvalidLoginCredentials();
+        }
+
+        return JsonResponse::fromJsonString($response->getContent());
+    }
+
+    public function refreshToken(string $refreshToken): JsonResponseInterface
+    {
+        $parameters = [
+            'grant_type' => 'refresh_token',
+            'client_id' => config('auth.oauth.client_id'),
+            'client_secret' => config('auth.oauth.client_secret'),
+            'refresh_token' => $refreshToken,
         ];
 
         $request = Request::create('/oauth/token', Request::METHOD_POST, $parameters);

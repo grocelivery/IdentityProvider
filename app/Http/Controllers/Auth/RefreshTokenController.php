@@ -4,25 +4,22 @@ declare(strict_types=1);
 
 namespace Grocelivery\IdentityProvider\Http\Controllers\Auth;
 
-use Exception;
-use Grocelivery\IdentityProvider\Exceptions\EmailNotVerifiedException;
 use Grocelivery\IdentityProvider\Http\Controllers\Controller;
-use Grocelivery\IdentityProvider\Http\Requests\LoginUser;
-use Grocelivery\IdentityProvider\Models\User;
+use Grocelivery\IdentityProvider\Http\Requests\RefreshToken;
 use Grocelivery\IdentityProvider\Services\Auth\OAuthProxy;
 use Grocelivery\Utils\Interfaces\JsonResponseInterface as JsonResponse;
 
 /**
- * Class LoginController
+ * Class RefreshTokenController
  * @package Grocelivery\IdentityProvider\Http\Controllers\Auth
  */
-class LoginController extends Controller
+class RefreshTokenController extends Controller
 {
     /** @var OAuthProxy */
     protected $oAuthProxy;
 
     /**
-     * LoginController constructor.
+     * RefreshTokenController constructor.
      * @param JsonResponse $response
      * @param OAuthProxy $oAuthProxy
      */
@@ -32,21 +29,9 @@ class LoginController extends Controller
         $this->oAuthProxy = $oAuthProxy;
     }
 
-    /**
-     * @param LoginUser $request
-     * @return JsonResponse
-     * @throws Exception
-     */
-    public function login(LoginUser $request): JsonResponse
+    public function refresh(RefreshToken $request): JsonResponse
     {
-        $email = $request->input('email');
-        $password = $request->input('password');
-
-        $authResponse = $this->oAuthProxy->getTokenFromCredentials($email, $password);
-
-        if (!User::findByEmail($email)->hasVerifiedEmail()) {
-            throw new EmailNotVerifiedException();
-        }
+        $authResponse = $this->oAuthProxy->refreshToken($request->input("refreshToken"));
 
         return $this->response
             ->add('accessToken', $authResponse->get('access_token'))
