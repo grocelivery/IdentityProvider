@@ -46,3 +46,6 @@ docker container exec idp-php-fpm php artisan passport:install
 ```
 localhost:20001
 ```
+
+### Aplikacja jest publicznie dostępna na:
+http://api.grocelivery.eu/auth
