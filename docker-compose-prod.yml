@@ -9,8 +9,8 @@ services:
     volumes:
       - .:/application
       - ./.docker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
-    ports:
-      - 20001:80
+    expose:
+      - 8081
     environment:
       - SHELL=/bin/ash
     depends_on:
@@ -23,15 +23,17 @@ services:
       - .:/application
     links:
       - database
-    environment:
-      - SHELL=/bin/ash
-    working_dir: /application
 
   database:
     container_name: idp-database
     image: mysql:5.6
     environment:
-      - MYSQL_ROOT_PASSWORD=zsz1234
+      - MYSQL_RANDOM_ROOT_PASSWORD=yes
       - MYSQL_DATABASE=${DB_DATABASE}
       - MYSQL_USER=${DB_USERNAME}
       - MYSQL_PASSWORD=${DB_PASSWORD}
+
+networks:
+  default:
+    external:
+      name: nginx_proxy
