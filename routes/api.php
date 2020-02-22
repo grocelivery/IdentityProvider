@@ -10,6 +10,7 @@ Route::get('/keys/public', 'Auth\KeyController@getPublicKey');
 Route::post('/register', 'Auth\RegisterController@register');
 Route::post('/login', 'Auth\LoginController@login');
 Route::post('/refresh', 'Auth\RefreshTokenController@refresh');
+Route::post('/verify/{token}', 'Auth\VerificationController@verify');
 
 Route::group(['middleware' => 'auth:api'], function (): void {
     Route::get('/me', 'UserController@getAuthenticatedUser');
