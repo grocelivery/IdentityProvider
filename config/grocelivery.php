@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 return [
-    'notifier' => [
-        'host' => env('NOTIFIER_HOST', 'http://notifier-webserver'),
+    'mailer' => [
+        'host' => env('MAILER_HOST', 'http://mailer-webserver'),
     ],
 ];

@@ -6,7 +6,6 @@ namespace Grocelivery\IdentityProvider\Interfaces\Services;
 
 use Grocelivery\IdentityProvider\Models\User;
 use Grocelivery\IdentityProvider\Models\VerificationToken;
-use Grocelivery\Utils\Clients\NotifierClient;
 
 /**
  * Interface EmailVerifierInterface
@@ -14,12 +13,6 @@ use Grocelivery\Utils\Clients\NotifierClient;
  */
 interface EmailVerifierInterface
 {
-    /**
-     * EmailVerifier constructor.
-     * @param NotifierClient $notifierClient
-     */
-    public function __construct(NotifierClient $notifierClient);
-
     /**
      * @param User $user
      */

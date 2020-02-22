@@ -8,7 +8,7 @@ use Exception;
 use Grocelivery\IdentityProvider\Interfaces\Services\EmailVerifierInterface;
 use Grocelivery\IdentityProvider\Models\User;
 use Grocelivery\IdentityProvider\Models\VerificationToken;
-use Grocelivery\Utils\Clients\NotifierClient;
+use Grocelivery\Utils\Clients\MailerClient;
 use Illuminate\Support\Str;
 
 /**
@@ -17,16 +17,16 @@ use Illuminate\Support\Str;
  */
 class EmailVerifier implements EmailVerifierInterface
 {
-    /** @var NotifierClient */
-    protected $notifierClient;
+    /** @var MailerClient */
+    protected $mailerClient;
 
     /**
      * EmailVerifier constructor.
-     * @param NotifierClient $notifierClient
+     * @param MailerClient $mailerClient
      */
-    public function __construct(NotifierClient $notifierClient)
+    public function __construct(MailerClient $mailerClient)
     {
-        $this->notifierClient = $notifierClient;
+        $this->mailerClient = $mailerClient;
     }
 
     /**
@@ -42,8 +42,8 @@ class EmailVerifier implements EmailVerifierInterface
             'token' => $activationToken,
         ];
 
-        $this->notifierClient->setAccessToken($user->createToken('notifier_personal_token')->accessToken);
-        $this->notifierClient->sendMail('emailVerification', $user->email, $data);
+        $this->mailerClient->setAccessToken($user->createToken('mailer_personal_token')->accessToken);
+        $this->mailerClient->sendMail('emailVerification', $user->email, $data);
     }
 
     /**
