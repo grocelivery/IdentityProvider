@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/status', 'StatusController@getStatus');
+Route::get('/', 'StatusController@getStatus');
 Route::get('/keys/public', 'Auth\KeyController@getPublicKey');
 
 Route::post('/register', 'Auth\RegisterController@register');
